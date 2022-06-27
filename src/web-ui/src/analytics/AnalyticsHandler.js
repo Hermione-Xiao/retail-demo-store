@@ -11,11 +11,22 @@ import { Analytics as AmplifyAnalytics } from '@aws-amplify/analytics';
 import Amplitude from 'amplitude-js'
 import { RepositoryFactory } from '@/repositories/RepositoryFactory'
 import optimizelySDK from '@optimizely/optimizely-sdk';
+import * as braze from "@braze/web-sdk";
 
 const RecommendationsRepository = RepositoryFactory.get('recommendations')
 const ProductsRepository = RepositoryFactory.get('products')
 
+console.log("Hello")
+
+braze.initialize('6e6cb451-66f2-487f-a59a-2fab99358f61', {
+    baseUrl: "sdk.fra-01.braze.eu",
+    enableLogging: true
+});
+
+braze.automaticallyShowInAppMessages();
+
 export const AnalyticsHandler = {
+
     clearUser() {
         if (this.amplitudeEnabled()) {
             // Update Amplitude user
@@ -37,6 +48,15 @@ export const AnalyticsHandler = {
         if (!user) {
             return Promise.resolve()
         }
+
+        braze.initialize('6e6cb451-66f2-487f-a59a-2fab99358f61', {
+            baseUrl: "sdk.fra-01.braze.eu",
+            enableLogging: true
+        });
+
+        braze.changeUser(user.id);
+        
+        braze.openSession();
 
         var promise
 
@@ -219,6 +239,11 @@ export const AnalyticsHandler = {
 
     userSignedIn(user) {
         if (user) {
+            
+            braze.changeUser(user.id);
+        
+            braze.openSession();
+
             AmplifyAnalytics.record({
                 name: 'UserSignedIn',
                 attributes: {
@@ -863,6 +888,12 @@ export const AnalyticsHandler = {
             let orderItem = order.items[itemIdx]
 
             if (user) {
+                braze.logPurchase(
+                    order.id.toString(), 
+                    orderItem.price.toFixed(2),
+                    "USD",
+                    orderItem.quantity,
+                )
                 AmplifyAnalytics.record({
                     name: '_monetization.purchase',
                     attributes: {
