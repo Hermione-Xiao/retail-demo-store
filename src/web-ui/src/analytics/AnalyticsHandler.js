@@ -25,6 +25,8 @@ braze.initialize('6e6cb451-66f2-487f-a59a-2fab99358f61', {
 
 braze.automaticallyShowInAppMessages();
 
+braze.openSession();
+
 export const AnalyticsHandler = {
 
     clearUser() {
@@ -239,7 +241,7 @@ export const AnalyticsHandler = {
 
     userSignedIn(user) {
         if (user) {
-            
+
             braze.changeUser(user.id);
         
             braze.openSession();
@@ -449,6 +451,29 @@ export const AnalyticsHandler = {
         const hasItem = await this.recordShoppingCart(user, cart)
         var productImages, productTitles, productURLs
         if (hasItem) {
+
+            braze.changeUser(user.id);
+            
+            console.log(cart);
+            console.log(cart.items.length);
+
+            var total_price = Object.values(cart.items).map(
+                (v) => parseFloat(v.price)
+            ).reduce(
+                (a, b) => a + b,
+                0
+            )
+
+            console.log(total_price);
+
+            braze.logCustomEvent(
+                "Cart Abandoned",
+                {
+                    "cart_id": cart.id,
+                    "item_num": cart.items.length,
+                    "total_value": total_price
+                }
+            );
 
             if (this.mParticleEnabled()) {
 
