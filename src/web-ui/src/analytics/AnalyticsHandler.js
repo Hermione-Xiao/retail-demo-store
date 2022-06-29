@@ -219,6 +219,14 @@ export const AnalyticsHandler = {
 
     userSignedUp(user) {
         if (user) {
+
+            braze.changeUser(user)
+
+            console.log(user)
+
+            braze.getUser().setFirstName(user.first_name);
+            braze.getUser().setLastName(user.last_name);
+
             AmplifyAnalytics.record({
                 name: 'UserSignedUp',
                 attributes: {
@@ -896,6 +904,8 @@ export const AnalyticsHandler = {
 
     orderCompleted(user, cart, order) {
         if (user) {
+            braze.changeUser(user);
+            console.log(user);
             AmplifyAnalytics.record({
                 name: 'Purchase',
                 attributes: {

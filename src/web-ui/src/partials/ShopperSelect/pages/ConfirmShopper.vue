@@ -8,6 +8,9 @@
           Your selections
         </h2>
         <dl class="selections">
+          <dt class="key">User name:</dt>
+          <dd>{{ selection.userName }}</dd>
+
           <dt class="key">Age range:</dt>
           <dd>{{ selection.ageRange === '70-and-above' ? '70 and above' : selection.ageRange }}</dd>
 

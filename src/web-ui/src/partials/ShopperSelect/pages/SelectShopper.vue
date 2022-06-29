@@ -11,7 +11,12 @@
 
       <form @submit.prevent="onSubmit" class="form">
         <div class="form-group d-flex align-items-center">
-          <label for="age-range" class="label mr-3 mb-0">1</label>
+          <label for="user-name" class="label mr-3 mb-0">1</label>
+          <input class="form-control" id="user-name" placeholder="Enter User Name" v-model="userName">
+        </div>
+
+        <div class="form-group d-flex flex-column">
+          <label for="age-range" class="label mr-3 mb-0">2</label>
           <select class="form-control" id="age-range" placeholder="Select age range" v-model="ageRange">
             <option value="">Select age range</option>
             <option value="18-24">18-24 years</option>
@@ -25,7 +30,7 @@
 
         <div class="form-group d-flex flex-column">
           <div class="d-flex align-items-center">
-            <label for="primary-interest" class="label mr-3 mb-0">2</label>
+            <label for="primary-interest" class="label mr-3 mb-0">3</label>
             <select class="form-control" id="primary-interest" v-model="primaryInterest">
               <option value="">Select primary interest</option>
 
@@ -75,6 +80,7 @@ export default {
   name: 'SelectShopper',
   data() {
     return {
+      userName: '',
       ageRange: '',
       primaryInterest: '',
       shopperNotFound: false,
@@ -94,16 +100,16 @@ export default {
   },
   methods: {
     async onSubmit() {
-      const { primaryInterest, ageRange } = this;
+      const {userName, primaryInterest, ageRange } = this;
 
-      const { data } = await UsersRepository.getUnclaimedUser({ primaryInterest, ageRange });
+      const { data } = await UsersRepository.getUserByUsername(userName);
 
       if (!data) {
         this.shopperNotFound = true;
       } else {
         this.$emit('shopperSelected', {
-          selection: { primaryInterest, ageRange },
-          assignedShopper: data[0],
+          selection: { userName, primaryInterest, ageRange },
+          assignedShopper: data,
         });
       }
     },
@@ -112,6 +118,9 @@ export default {
     },
   },
   watch: {
+    userName() {
+      this.resetShopperNotFound();
+    },
     primaryInterest() {
       this.resetShopperNotFound();
     },
