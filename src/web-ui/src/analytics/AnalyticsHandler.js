@@ -220,12 +220,16 @@ export const AnalyticsHandler = {
     userSignedUp(user) {
         if (user) {
 
-            braze.changeUser(user)
+            braze.changeUser(user.id)
 
             console.log(user)
 
             braze.getUser().setFirstName(user.first_name);
             braze.getUser().setLastName(user.last_name);
+            braze.getUser().setEmail(user.email);
+            braze.getUser().setGender(user.gender);
+            braze.getUser().setHomeCity(user.addresses[0].city);
+            braze.getUser().setCountry(user.addresses[0].country);
 
             AmplifyAnalytics.record({
                 name: 'UserSignedUp',
