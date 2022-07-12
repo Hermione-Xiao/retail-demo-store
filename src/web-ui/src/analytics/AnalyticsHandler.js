@@ -56,7 +56,7 @@ export const AnalyticsHandler = {
             enableLogging: true
         });
 
-        braze.changeUser(user.id);
+        braze.changeUser(`DRS-${user.id}`);
         
         braze.openSession();
 
@@ -220,7 +220,7 @@ export const AnalyticsHandler = {
     userSignedUp(user) {
         if (user) {
 
-            braze.changeUser(user.id)
+            braze.changeUser(`DRS-${user.id}`)
 
             console.log(user)
 
@@ -230,6 +230,8 @@ export const AnalyticsHandler = {
             braze.getUser().setGender(user.gender);
             braze.getUser().setHomeCity(user.addresses[0].city);
             braze.getUser().setCountry(user.addresses[0].country);
+            braze.getUser().setCustomUserAttribute('discount_persona', user.discount_persona)
+            braze.getUser().setCustomUserAttribute('preferences', user.persona.split('_'))
 
             AmplifyAnalytics.record({
                 name: 'UserSignedUp',
@@ -254,7 +256,7 @@ export const AnalyticsHandler = {
     userSignedIn(user) {
         if (user) {
 
-            braze.changeUser(user.id);
+            braze.changeUser(`DRS-${user.id}`);
         
             braze.openSession();
 
@@ -464,7 +466,7 @@ export const AnalyticsHandler = {
         var productImages, productTitles, productURLs
         if (hasItem) {
 
-            braze.changeUser(user.id);
+            braze.changeUser(`DRS-${user.id}`);
             
             console.log(cart);
             console.log(cart.items.length);
@@ -908,8 +910,10 @@ export const AnalyticsHandler = {
 
     orderCompleted(user, cart, order) {
         if (user) {
-            braze.changeUser(user);
+            braze.changeUser(`DRS-${user.id}`);
             console.log(user);
+            console.log(order);
+            console.log(cart);
             AmplifyAnalytics.record({
                 name: 'Purchase',
                 attributes: {
@@ -932,6 +936,11 @@ export const AnalyticsHandler = {
                     orderItem.price.toFixed(2),
                     "USD",
                     orderItem.quantity,
+                    {
+                        "product_id": orderItem.product_id,
+                        "product_name": orderItem.product_name,
+                        "category": orderItem.category
+                    }
                 )
                 AmplifyAnalytics.record({
                     name: '_monetization.purchase',

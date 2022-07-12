@@ -135,6 +135,9 @@ components:
     Product:
       type: object
       properties:
+        category:
+          type: string
+          example: "groceries"
         product_id:
           type: string
           example: 'a31ad4b3-f9a8-4a9b-a8b3-3034af7bacec'

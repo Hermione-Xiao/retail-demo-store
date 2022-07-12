@@ -74,7 +74,7 @@ export const cart = {
       if (index !== -1) {
         commit({ type: 'addQuantityToItem', index, quantity });
       } else {
-        commit({ type: 'addItemToCart', item: { product_id: product.id, product_name: product.name, price: product.price, quantity } });
+        commit({ type: 'addItemToCart', item: { product_id: product.id, product_name: product.name, price: product.price, quantity, category: product.category } });
       }
 
       await dispatch('updateCart');

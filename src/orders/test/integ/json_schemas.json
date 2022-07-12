@@ -11,12 +11,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["product_id", "product_name", "quantity", "price"],
+            "required": ["product_id", "product_name", "quantity", "price", "category"],
             "properties": {
               "product_id": {"type": "string"},
               "product_name": {"type": "string"},
               "quantity": {"type": "number"},
-              "price": {"type": "number"}
+              "price": {"type": "number"},
+              "category": {"type": "string"}
             }
           }
         },
@@ -77,12 +78,13 @@
         "type": "array",
         "items": {
           "type": "object",
-          "required": ["product_id", "product_name", "quantity", "price"],
+          "required": ["product_id", "product_name", "quantity", "price", "category"],
           "properties": {
             "product_id": {"type": "string"},
             "product_name": {"type": "string"},
             "quantity": {"type": "number"},
-            "price": {"type": "number"}
+            "price": {"type": "number"},
+            "category": {"type": "string"}
           }
         }
       },
@@ -144,12 +146,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["product_id", "product_name", "quantity", "price"],
+            "required": ["product_id", "product_name", "quantity", "price", "category"],
             "properties": {
               "product_id": {"type": "string"},
               "product_name": {"type": "string"},
               "quantity": {"type": "number"},
-              "price": {"type": "number"}
+              "price": {"type": "number"},
+              "category": {"type": "string"}
             }
           }
         },
@@ -210,12 +213,13 @@
         "type": "array",
         "items": {
           "type": "object",
-          "required": ["product_id", "product_name", "quantity", "price"],
+          "required": ["product_id", "product_name", "quantity", "price", "category"],
           "properties": {
             "product_id": {"type": "string"},
             "product_name": {"type": "string"},
             "quantity": {"type": "number"},
-            "price": {"type": "number"}
+            "price": {"type": "number"},
+            "category": {"type": "string"}
           }
         }
       },

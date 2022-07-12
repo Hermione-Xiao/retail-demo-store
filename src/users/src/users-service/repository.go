@@ -138,7 +138,6 @@ func RepoFindRandomUsersByPrimaryPersonaAndAgeRange (primaryPersona string , age
 	return unclaimedUsers
 }
 
-
 // RepoClaimUser Function
 // Function used to map which shopper user ids have been claimed by the user Id.
 func RepoClaimUser(userId int ) bool{

@@ -28,6 +28,7 @@ type OrderItem struct {
 	ProductName string  `json:"product_name" yaml:"product_name"`
 	Quantity    int     `json:"quantity" yaml:"quantity"`
 	Price       float32 `json:"price" yaml:"price"`
+	Category    string  `json:"category" yaml:"category"`
 }
 
 // OrderItems Array
