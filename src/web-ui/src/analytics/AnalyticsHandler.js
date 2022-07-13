@@ -23,6 +23,27 @@ braze.initialize('6e6cb451-66f2-487f-a59a-2fab99358f61', {
     enableLogging: true
 });
 
+// Returns the date of birth given the age, the month and day
+// is randomised
+function get_dob(age) {
+    console.log(age);
+    var date = new Date();
+    var year = date.getFullYear() - age;
+    var month = Math.floor(Math.random() * 12) + 1;
+    var day
+    if ([1, 3, 5, 7, 8, 10, 12].includes(month)) {
+        day = Math.floor(Math.random() * 31) + 1;
+    } 
+    else if ([4, 6, 9, 11].includes(month)) {
+        day = Math.floor(Math.random() * 30) + 1;
+    }
+    else {
+        day = Math.floor(Math.random() * 28) + 1;
+    }
+
+    return [year, month, day]
+}
+
 braze.automaticallyShowInAppMessages();
 
 braze.openSession();
@@ -220,18 +241,29 @@ export const AnalyticsHandler = {
     userSignedUp(user) {
         if (user) {
 
-            braze.changeUser(`DRS-${user.id}`)
+            braze.changeUser(`DRS-${user.id}`);
 
-            console.log(user)
+            console.log(user);
+        
+            var dob = get_dob(user.age);
+            console.log(dob);
 
             braze.getUser().setFirstName(user.first_name);
             braze.getUser().setLastName(user.last_name);
-            braze.getUser().setEmail(user.email);
+            braze.getUser().setEmail('hermione.xiao@servian.com');
             braze.getUser().setGender(user.gender);
+            braze.getUser().setDateOfBirth(...dob);
             braze.getUser().setHomeCity(user.addresses[0].city);
             braze.getUser().setCountry(user.addresses[0].country);
-            braze.getUser().setCustomUserAttribute('discount_persona', user.discount_persona)
-            braze.getUser().setCustomUserAttribute('preferences', user.persona.split('_'))
+            braze.getUser().setCustomUserAttribute('discount_persona', user.discount_persona);
+            braze.getUser().setCustomUserAttribute('preferences', user.persona.split('_'));
+
+            braze.logCustomEvent(
+                "user_signed_up", {
+                    "user_id": user.id,
+                    "date_signed_up": user.sign_up_date
+                }
+            );
 
             AmplifyAnalytics.record({
                 name: 'UserSignedUp',
@@ -239,7 +271,7 @@ export const AnalyticsHandler = {
                     userId: user.id,
                     signUpDate: user.sign_up_date
                 }
-            })
+            });
 
             if (this.googleAnalyticsEnabled()) {
                 Vue.prototype.$gtag.event("sign_up", {
@@ -260,13 +292,20 @@ export const AnalyticsHandler = {
         
             braze.openSession();
 
+            braze.logCustomEvent(
+                "user_signed_in", {
+                    "user_id": user.id,
+                    "date_signed_in": user.last_sign_in_date
+                }
+            );
+
             AmplifyAnalytics.record({
                 name: 'UserSignedIn',
                 attributes: {
                     userId: user.id,
                     signInDate: user.last_sign_in_date
                 }
-            })
+            });
 
             if (this.googleAnalyticsEnabled()) {
                 Vue.prototype.$gtag.event("login", {
@@ -310,6 +349,22 @@ export const AnalyticsHandler = {
 
     productAddedToCart(user, cart, product, quantity, feature, experimentCorrelationId) {
         if (user) {
+            
+            braze.changeUser(`DRS-${user.id}`);
+
+            braze.logCustomEvent(
+                "product_added_to_cart", {
+                    "cart_id": cart.id,
+                    "category": product.category,
+                    "feature": product.feature,
+                    "image": product.image,
+                    "name": product.name,
+                    "price": product.price,
+                    "product_id": product.id,
+                    "user_id": user.id
+                }
+            )
+
             AmplifyAnalytics.record({
                 name: 'AddToCart',
                 attributes: {
@@ -471,7 +526,8 @@ export const AnalyticsHandler = {
             console.log(cart);
             console.log(cart.items.length);
 
-            var total_price = Object.values(cart.items).map(
+            var total_price = Object.values(cart.items)
+            .map(
                 (v) => parseFloat(v.price)
             ).reduce(
                 (a, b) => a + b,
@@ -481,7 +537,7 @@ export const AnalyticsHandler = {
             console.log(total_price);
 
             braze.logCustomEvent(
-                "Cart Abandoned",
+                "cart_abandoned",
                 {
                     "cart_id": cart.id,
                     "item_num": cart.items.length,
@@ -518,6 +574,22 @@ export const AnalyticsHandler = {
 
     productRemovedFromCart(user, cart, cartItem, origQuantity) {
         if (user && user.id) {
+
+            braze.changeUser(`DRS-${user.id}`);
+
+            braze.logCustomEvent(
+                "product_removed_from_cart", {
+                    "cart_id": cart.id,
+                    "category": cartItem.category,
+                    "feature": cartItem.feature,
+                    "image": cartItem.image,
+                    "name": cartItem.name,
+                    "price": cartItem.price,
+                    "product_id": cartItem.id,
+                    "user_id": user.id
+                }
+            )
+
             AmplifyAnalytics.record({
                 name: 'RemoveFromCart',
                 attributes: {
@@ -644,6 +716,18 @@ export const AnalyticsHandler = {
     },
     productViewed(user, product, feature, experimentCorrelationId, discount) {
         if (user) {
+            braze.changeUser(`DRS-${user.id}`);
+
+            braze.logCustomEvent(
+                "product_viewed", {
+                    "category": product.category,
+                    "feature": product.feature,
+                    "image": product.image,
+                    "name": product.name,
+                    "price": product.price,
+                    "product_id": product.id
+                }
+            )
             AmplifyAnalytics.record({
                 name: 'View',
                 attributes: {
@@ -932,14 +1016,14 @@ export const AnalyticsHandler = {
 
             if (user) {
                 braze.logPurchase(
-                    order.id.toString(), 
+                    orderItem.category, 
                     orderItem.price.toFixed(2),
                     "USD",
                     orderItem.quantity,
                     {
                         "product_id": orderItem.product_id,
                         "product_name": orderItem.product_name,
-                        "category": orderItem.category
+                        "order_id": order.id.toString()
                     }
                 )
                 AmplifyAnalytics.record({
