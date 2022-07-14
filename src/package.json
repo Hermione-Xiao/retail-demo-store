@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@braze/web-sdk": "^4.0.4"
+  }
+}
