@@ -240,31 +240,33 @@ export const AnalyticsHandler = {
 
     userSignedUp(user) {
         if (user) {
+            if (user.gender) {
+                braze.changeUser(`DRS-${user.id}`);
 
-            braze.changeUser(`DRS-${user.id}`);
+                console.log(user);
+            
+                var dob = get_dob(user.age);
+                console.log(user.gender);
+                console.log(dob);
 
-            console.log(user);
-        
-            var dob = get_dob(user.age);
-            console.log(dob);
+                braze.getUser().setFirstName(user.first_name);
+                braze.getUser().setLastName(user.last_name);
+                braze.getUser().setEmail('hermione.xiao@servian.com');
+                braze.getUser().setGender(user.gender | "N");
+                braze.getUser().setDateOfBirth(...dob);
+                braze.getUser().setHomeCity(user.addresses[0].city);
+                braze.getUser().setCountry(user.addresses[0].country);
+                braze.getUser().setCustomUserAttribute('discount_persona', user.discount_persona);
+                braze.getUser().setCustomUserAttribute('preferences', user.persona.split('_'));
 
-            braze.getUser().setFirstName(user.first_name);
-            braze.getUser().setLastName(user.last_name);
-            braze.getUser().setEmail('hermione.xiao@servian.com');
-            braze.getUser().setGender(user.gender);
-            braze.getUser().setDateOfBirth(...dob);
-            braze.getUser().setHomeCity(user.addresses[0].city);
-            braze.getUser().setCountry(user.addresses[0].country);
-            braze.getUser().setCustomUserAttribute('discount_persona', user.discount_persona);
-            braze.getUser().setCustomUserAttribute('preferences', user.persona.split('_'));
-
-            braze.logCustomEvent(
-                "user_signed_up", {
-                    "user_id": user.id,
-                    "date_signed_up": user.sign_up_date
-                }
-            );
-
+                braze.logCustomEvent(
+                    "user_signed_up", {
+                        "user_id": user.id,
+                        "date_signed_up": user.sign_up_date
+                    }
+                );
+            }
+            
             AmplifyAnalytics.record({
                 name: 'UserSignedUp',
                 attributes: {
