@@ -16,7 +16,7 @@ import * as braze from "@braze/web-sdk";
 const RecommendationsRepository = RepositoryFactory.get('recommendations')
 const ProductsRepository = RepositoryFactory.get('products')
 
-console.log("Hello")
+console.log("Hello, there!")
 
 braze.initialize('6e6cb451-66f2-487f-a59a-2fab99358f61', {
     baseUrl: "sdk.fra-01.braze.eu",
