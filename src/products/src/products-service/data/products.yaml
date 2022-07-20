@@ -22894,7 +22894,7 @@
   style: pizza
   description: Slice of delicious pepperoni pizza
   price: 3.00
-  image: 0790267c-c708-424d-81f5-46903a9c8444jpg
+  image: 0790267c-c708-424d-81f5-46903a9c8444.jpg
   image_license: AWS Supplied
   link:
   current_stock: 90
@@ -22907,7 +22907,7 @@
   style: nachos
   description: The best nachos north of Mexico
   price: 5.00
-  image: b20ba076-58a7-4602-9b56-4bee46e98388jpg
+  image: b20ba076-58a7-4602-9b56-4bee46e98388.jpg
   image_license: AWS Supplied
   link:
   current_stock: 90
@@ -22919,7 +22919,7 @@
   style: fountain-carbonated
   description: 16oz fountain soda always hits the spot
   price: 1.50
-  image: aff05423-76e8-4339-a478-fc17d51ed985jpg
+  image: aff05423-76e8-4339-a478-fc17d51ed985.jpg
   image_license: AWS Supplied
   link:
   current_stock: 90
@@ -22931,7 +22931,7 @@
   style: nuts/seeds
   description: Meet your daily intake of yum
   price: 1.60
-  image: 6cc0deb8-4a56-4148-a2ab-677277522c80jpg
+  image: 6cc0deb8-4a56-4148-a2ab-677277522c80.jpg
   image_license:
   link: Supplied by Dae.mn
   current_stock: 90
@@ -22944,7 +22944,7 @@
   description: You won't be able to stop eating them and you will have to come back
     for more.
   price: 2.50
-  image: 7a619c82-a5da-4bc9-b6e6-64e93c51fb55jpg
+  image: 7a619c82-a5da-4bc9-b6e6-64e93c51fb55.jpg
   image_license:
   link: Supplied by Dae.mn
   current_stock: 90
@@ -22956,7 +22956,7 @@
   style: nuts/seeds
   description: A delightful blend of Californian and Oriental almonds
   price: 1.90
-  image: e1146e90-3274-4ad6-a6a2-0170f0f8d597jpg
+  image: e1146e90-3274-4ad6-a6a2-0170f0f8d597.jpg
   image_license:
   link: Supplied by Dae.mn
   current_stock: 90
@@ -22968,7 +22968,7 @@
   style: sandwiches/wraps
   description: Exotic and healthy, grape-vine leaves stuffed with rice... and spice
   price: 3.90
-  image: a6f43f84-a89a-446f-8adc-8b1a23a30a81jpg
+  image: a6f43f84-a89a-446f-8adc-8b1a23a30a81.jpg
   image_license:
   link: Supplied by Dae.mn
   current_stock: 10
@@ -22980,7 +22980,7 @@
   style: soup and salad
   description: Full of omega oils and taste
   price: 4.90
-  image: 25d7bbf6-7dd3-4912-93a7-4186ea417b54jpg
+  image: 25d7bbf6-7dd3-4912-93a7-4186ea417b54.jpg
   image_license: CC0
   link: https://publicdomainpictures.net/en/view-image.php?image=9039&picture=tomato-and-bacon-salad
   current_stock: 10
@@ -22992,7 +22992,7 @@
   style: soup and salad
   description: The taste of summer and energy
   price: 4.10
-  image: 4496471c-b098-4915-9a1a-8b9e60043737jpg
+  image: 4496471c-b098-4915-9a1a-8b9e60043737.jpg
   image_license: CC0
   link: https://publicdomainpictures.net/en/view-image.php?image=261119&picture=salad-bowl
   current_stock: 10
@@ -23004,7 +23004,7 @@
   style: soup and salad
   description: Warms you to your bowels and delivers vitamins to your organs
   price: 2.10
-  image: 24c62ad2-6977-4f69-be75-e37d897c1434jpg
+  image: 24c62ad2-6977-4f69-be75-e37d897c1434.jpg
   image_license: CC0
   link: https://publicdomainpictures.net/en/view-image.php?image=318298&picture=cup-of-vegetable-soup
   current_stock: 10
@@ -23016,7 +23016,7 @@
   style: fountain-non-carbonated
   description: Thick and fine smoothy, satisfying and healthy
   price: 2.50
-  image: 0de9bba0-1149-40e9-b1a6-7dcecaf68194jpg
+  image: 0de9bba0-1149-40e9-b1a6-7dcecaf68194.jpg
   image_license: CC0
   link: https://publicdomainpictures.net/en/view-image.php?image=6567&picture=smoothie-drinks
   current_stock: 10
@@ -23028,7 +23028,7 @@
   style: fountain-non-carbonated
   description: Made with ginseng and joy
   price: 2.50
-  image: 5afced84-ed2d-4520-a06d-dcfeab382e52jpg
+  image: 5afced84-ed2d-4520-a06d-dcfeab382e52.jpg
   image_license: CC0
   link: https://publicdomainpictures.net/en/view-image.php?image=4436&picture=ice-tea
   current_stock: 10
@@ -23040,7 +23040,7 @@
   style: seafood
   description: Juicy prawns with spicy sauce and rice
   price: 5.50
-  image: 0987bfa1-0a23-4b90-8882-8a6e9bd91e24jpg
+  image: 0987bfa1-0a23-4b90-8882-8a6e9bd91e24.jpg
   image_license: CC0
   link: https://publicdomainpictures.net/en/view-image.php?image=331888&picture=shrimp-grilled-thai-foods
   current_stock: 10
@@ -23054,7 +23054,7 @@
   description: Lentils with potatos, carrots and spices; a joy to your palate and
     super healthy
   price: 3.50
-  image: 575c0ac0-5494-4c64-a886-a9c0cf8b779ajpg
+  image: 575c0ac0-5494-4c64-a886-a9c0cf8b779a.jpg
   image_license: Free for commercial use - just do not resell as a stock photo
   link: https://pixabay.com/fr/photos/soupe-de-lentilles-lentilles-rago%C3%BBt-3738547/
   current_stock: 10
@@ -23066,7 +23066,7 @@
   style: hot chocolate
   description: Warm and sweet, get up and go.
   price: 1.20
-  image: 7000f6e7-41f7-4957-878a-ccc42a39ca59jpg
+  image: 7000f6e7-41f7-4957-878a-ccc42a39ca59.jpg
   image_license: CC0
   link: https://publicdomainpictures.net/en/view-image.php?image=222425&picture=hot-cup-of-coffee
   current_stock: 11
@@ -23078,7 +23078,7 @@
   style: potato chips
   description: Crunchy and yummy! Crumbs in your lap!
   price: 1.10
-  image: 9c1a2048-7aac-4565-b836-d8d4f726322cjpg
+  image: 9c1a2048-7aac-4565-b836-d8d4f726322c.jpg
   image_license: CC0
   link: https://publicdomainpictures.net/en/view-image.php?image=344511&picture=delicious-potato-chips-in-bowl
   current_stock: 11
